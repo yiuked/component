@@ -1,1 +1,19 @@
+version: "3"
 
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+      - type: bind
+        source: /usr/share/zoneinfo/PRC
+        target: /usr/share/zoneinfo/PRC
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456' # root管理员用户密码
+    ports:
+      - 3306:3306
+    restart: always
